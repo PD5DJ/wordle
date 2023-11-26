@@ -1,0 +1,26 @@
+Requirements:
+LinBPQ
+bash
+curl
+Internet (port 443) for curl to use
+
+Install:
+Place wordle.sh wherever you put your LinBPQ external applications and chmod it to be executable.
+
+Edit your bpq32.cfg application interface section like so:
+
+   APPLICATION 10,WORDLE,C 10 HOST 6 K S
+
+Keeping in mind your application, port and command port numbers will likely be different.
+
+Edit your /etc/inetd.conf like so:
+
+   wordle          stream  tcp     nowait  doug    /home/doug/games/wordle/wordle.sh
+
+Make sure the path to wordle.sh is of course correct for your install.
+
+Edit your /etc/services like so:
+
+   wordle          63006/tcp
+
+The port number here may be different for your install (it should match what you used in bpq32.cfg).
